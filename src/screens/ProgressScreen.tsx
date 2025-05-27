@@ -34,7 +34,7 @@ interface ProgressStats {
     date: string;
     dailyCompleted: number;
     dailyTotal: number;
-    weeklyCompleted: number; // Integer count of weekly habits completed on this specific date
+    weeklyCompleted: number; 
     weeklyTotal: number;
     overallPercentage: number;
   }>;
@@ -75,17 +75,15 @@ const ProgressScreen: React.FC = () => {
     const todayString = getTodayString();
     const weekDays = getDaysInWeek();
 
-    // Today's completion stats
+    
     const totalHabits = habits.length;
 
-    // For daily habits, check today's completion
-    // For weekly habits, check if there is any completion in the current week
     const todayCompleted = habits.filter(habit => {
       if (habit.frequency === 'daily') {
         const todayCompletion = habit.completions.find(c => c.date === todayString);
         return todayCompletion?.completed;
       } else {
-        // For weekly habits, check if completed in any day of the current week
+      
         return habit.completions.some(c => {
           const completionDate = new Date(c.date);
           const weekStart = getWeekStart(new Date());
@@ -97,21 +95,21 @@ const ProgressScreen: React.FC = () => {
 
     const todayCompletionRate = totalHabits > 0 ? Math.round((todayCompleted / totalHabits) * 100) : 0;
 
-    // Weekly stats with improved logic
+
     const weeklyStats = weekDays.map(date => {
       const dateObj = new Date(date);
 
-      // Count daily habits that existed on this date
+     
       const dailyHabits = habits.filter(habit =>
         habit.frequency === 'daily' && new Date(habit.createdAt) <= dateObj
       );
 
-      // Count weekly habits that existed on this date
+     
       const weeklyHabits = habits.filter(habit =>
         habit.frequency === 'weekly' && new Date(habit.createdAt) <= dateObj
       );
 
-      // For daily habits, check completion on that specific day
+      
       const dailyCompleted = dailyHabits.filter(habit => {
         const dayCompletion = habit.completions.find(c => c.date === date);
         return dayCompletion?.completed;
@@ -119,7 +117,6 @@ const ProgressScreen: React.FC = () => {
 
       // For weekly habits, only count progress for this specific date
       const weeklyCompleted = weeklyHabits.filter(habit => {
-        // Check if this specific date is marked as completed for this weekly habit
         const dayCompletion = habit.completions.find(c => c.date === date);
         return dayCompletion?.completed === true;
       }).length;
@@ -136,7 +133,7 @@ const ProgressScreen: React.FC = () => {
         date,
         dailyCompleted,
         dailyTotal,
-        weeklyCompleted, // Integer count of weekly habits completed on this specific date
+        weeklyCompleted, 
         weeklyTotal,
         overallPercentage,
       };
