@@ -72,3 +72,4 @@ npx react-native run-ios
 
 ## 📺 Demo Video
 
+https://drive.google.com/file/d/1TrEGppyqtUE6IU0Bywao5KaAMplX8Foi/view?usp=sharing
