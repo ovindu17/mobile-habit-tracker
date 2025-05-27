@@ -8,7 +8,7 @@ interface WeeklyData {
   date: string;
   dailyCompleted: number;
   dailyTotal: number;
-  weeklyCompleted: number; // Integer count of weekly habits completed on this specific date
+  weeklyCompleted: number; 
   weeklyTotal: number;
   overallPercentage: number;
 }
