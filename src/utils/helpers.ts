@@ -23,7 +23,7 @@ export const getWeekStart = (date: Date = new Date()): Date => {
 };
 
 export const getWeekEnd = (date: Date = new Date()): Date => {
-  const weekStart = getWeekStart(new Date(date)); // Pass a copy
+  const weekStart = getWeekStart(new Date(date)); 
   return new Date(weekStart.getTime() + 6 * 24 * 60 * 60 * 1000);
 };
 

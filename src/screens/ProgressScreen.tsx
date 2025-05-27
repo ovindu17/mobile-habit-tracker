@@ -115,7 +115,6 @@ const ProgressScreen: React.FC = () => {
         return dayCompletion?.completed;
       }).length;
 
-      // For weekly habits, only count progress for this specific date
       const weeklyCompleted = weeklyHabits.filter(habit => {
         const dayCompletion = habit.completions.find(c => c.date === date);
         return dayCompletion?.completed === true;
@@ -126,7 +125,6 @@ const ProgressScreen: React.FC = () => {
       const totalHabits = dailyTotal + weeklyTotal;
       const totalCompleted = dailyCompleted + weeklyCompleted;
 
-      // Calculate percentage with fractional weekly progress
       const overallPercentage = totalHabits > 0 ? Math.round((totalCompleted / totalHabits) * 100) : 0;
 
       return {
